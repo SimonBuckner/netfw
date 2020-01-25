@@ -102,55 +102,20 @@ func (s *Switch) DumpSwitch() {
 		switch s.Ports[key].Use {
 		case EdgePort:
 			edgeKeys = append(edgeKeys, key)
-			fmt.Printf("\nEdge : %2d", key)
+			// fmt.Printf("\nEdge : %2d", key)
 		case LinkPort:
 			linkKeys = append(linkKeys, key)
-			fmt.Printf("\nLink :  %2d", key)
+			// fmt.Printf("\nLink :  %2d", key)
 		default:
 			noConfig = append(noConfig, key)
-			fmt.Printf("\nNot  :  %2d", key)
+			// fmt.Printf("\nNot  :  %2d", key)
 		}
 	}
+
 	fmt.Printf("\nPort Layout : %v", s.PortDirection.ToString())
 	fmt.Printf("\nMax Ports   : %2d", s.MaxPort)
-	fmt.Printf("\nNo Config   : %2d", noConfig)
-	fmt.Printf("\nLink Ports  : %2d", linkKeys)
-	fmt.Printf("\nEdge Ports  : %2d", edgeKeys)
-
-	// fmt.Printf("Edge Ports  :  ")
-	// sepVal := ""
-	// for _, k := range edgeKeys {
-	// 	fmt.Printf("%s%d", sepVal, k)
-	// 	sepVal = ","
-	// }
-	// fmt.Println()
-
-	// fmt.Printf("Link Ports  :  ")
-	// sepVal = ""
-	// for _, k := range linkKeys {
-	// 	fmt.Printf("%s%d", sepVal, k)
-	// 	sepVal = ","
-	// }
-	// fmt.Println()
-
-	// edgeText := string(edgeKeys[0])
-	// firstKey := edgeKeys[0]
-	// lastKey := edgeKeys[0]
-	// inRange := false
-
-	// for i:=1; i< len(edgeKeys); i++ {
-	// 	if edgeKeys[i] == lastKey+1 {
-	// 		inRange = true
-	// 		lastKey = edgeKeys[i]
-	// 		continue
-	// 	}
-	// 	if !inRange {
-	// 		edgeText = edgeText + "," + string(i)
-	// 	} else {
-
-	// 	}
-	// }
-
-	// }
+	fmt.Printf("\nNo Config   : %v", intArrayToText(noConfig))
+	fmt.Printf("\nLink Ports  : %v", intArrayToText(linkKeys))
+	fmt.Printf("\nEdge Ports  : %v", intArrayToText(edgeKeys))
 
 }
