@@ -1,0 +1,1284 @@
+Running configuration:
+
+; J9138A Configuration Editor; Created on release #S.15.09.0029
+; Ver #06:04.08.00.01.14.05:1a
+hostname "Stack7"
+power-over-ethernet pre-std-detect
+qos dscp-map 000000 priority 0
+qos dscp-map 001000 priority 1
+qos dscp-map 010000 priority 2
+qos dscp-map 011000 priority 3
+qos dscp-map 011101 priority 0 name "voice"
+qos dscp-map 100000 priority 4
+qos dscp-map 101000 priority 5
+qos dscp-map 110000 priority 6
+qos dscp-map 111000 priority 7
+ip default-gateway 10.0.2.1
+snmp-server community "public" unrestricted
+lldp admin-status 1-28 disable
+vlan 1
+   name "DEFAULT_VLAN"
+   untagged 1-28
+   ip address 10.0.2.71 255.255.255.0
+   exit
+vlan 101
+   name "VLAN101"
+   tagged 25-28
+   no ip address
+   exit
+vlan 102
+   name "VLAN102"
+   tagged 25-28
+   no ip address
+   exit
+vlan 103
+   name "VLAN103"
+   tagged 25-28
+   no ip address
+   exit
+vlan 104
+   name "VLAN104"
+   tagged 25-28
+   no ip address
+   exit
+vlan 105
+   name "VLAN105"
+   tagged 25-28
+   no ip address
+   exit
+vlan 106
+   name "VLAN106"
+   tagged 25-28
+   no ip address
+   exit
+vlan 107
+   name "VLAN107"
+   tagged 25-28
+   no ip address
+   exit
+vlan 108
+   name "VLAN108"
+   tagged 25-28
+   no ip address
+   exit
+vlan 109
+   name "VLAN109"
+   tagged 25-28
+   no ip address
+   exit
+vlan 110
+   name "VLAN110"
+   tagged 25-28
+   no ip address
+   exit
+vlan 111
+   name "VLAN111"
+   tagged 25-28
+   no ip address
+   exit
+vlan 112
+   name "VLAN112"
+   tagged 25-28
+   no ip address
+   exit
+vlan 113
+   name "VLAN113"
+   tagged 25-28
+   no ip address
+   exit
+vlan 114
+   name "VLAN114"
+   tagged 25-28
+   no ip address
+   exit
+vlan 115
+   name "VLAN115"
+   tagged 25-28
+   no ip address
+   exit
+vlan 116
+   name "VLAN116"
+   tagged 25-28
+   no ip address
+   exit
+vlan 117
+   name "VLAN117"
+   tagged 25-28
+   no ip address
+   exit
+vlan 118
+   name "VLAN118"
+   tagged 25-28
+   no ip address
+   exit
+vlan 119
+   name "VLAN119"
+   tagged 25-28
+   no ip address
+   exit
+vlan 120
+   name "VLAN120"
+   tagged 25-28
+   no ip address
+   exit
+vlan 121
+   name "VLAN121"
+   tagged 25-28
+   no ip address
+   exit
+vlan 122
+   name "VLAN122"
+   tagged 25-28
+   no ip address
+   exit
+vlan 123
+   name "VLAN123"
+   tagged 25-28
+   no ip address
+   exit
+vlan 124
+   name "VLAN124"
+   tagged 25-28
+   no ip address
+   exit
+vlan 125
+   name "VLAN125"
+   tagged 25-28
+   no ip address
+   exit
+vlan 126
+   name "VLAN126"
+   tagged 25-28
+   no ip address
+   exit
+vlan 127
+   name "VLAN127"
+   tagged 25-28
+   no ip address
+   exit
+vlan 128
+   name "VLAN128"
+   tagged 25-28
+   no ip address
+   exit
+vlan 129
+   name "VLAN129"
+   tagged 25-28
+   no ip address
+   exit
+vlan 130
+   name "VLAN130"
+   tagged 25-28
+   no ip address
+   exit
+vlan 131
+   name "VLAN131"
+   tagged 25-28
+   no ip address
+   exit
+vlan 132
+   name "VLAN132"
+   tagged 25-28
+   no ip address
+   exit
+vlan 133
+   name "VLAN133"
+   tagged 25-28
+   no ip address
+   exit
+vlan 134
+   name "VLAN134"
+   tagged 25-28
+   no ip address
+   exit
+vlan 135
+   name "VLAN135"
+   tagged 25-28
+   no ip address
+   exit
+vlan 136
+   name "VLAN136"
+   tagged 25-28
+   no ip address
+   exit
+vlan 137
+   name "VLAN137"
+   tagged 25-28
+   no ip address
+   exit
+vlan 138
+   name "VLAN138"
+   tagged 25-28
+   no ip address
+   exit
+vlan 139
+   name "VLAN139"
+   tagged 25-28
+   no ip address
+   exit
+vlan 140
+   name "VLAN140"
+   tagged 25-28
+   no ip address
+   exit
+vlan 141
+   name "VLAN141"
+   tagged 25-28
+   no ip address
+   exit
+vlan 142
+   name "VLAN142"
+   tagged 25-28
+   no ip address
+   exit
+vlan 143
+   name "VLAN143"
+   tagged 25-28
+   no ip address
+   exit
+vlan 144
+   name "VLAN144"
+   tagged 25-28
+   no ip address
+   exit
+vlan 145
+   name "VLAN145"
+   tagged 25-28
+   no ip address
+   exit
+vlan 146
+   name "VLAN146"
+   tagged 25-28
+   no ip address
+   exit
+vlan 147
+   name "VLAN147"
+   tagged 25-28
+   no ip address
+   exit
+vlan 148
+   name "VLAN148"
+   tagged 25-28
+   no ip address
+   exit
+vlan 149
+   name "VLAN149"
+   tagged 25-28
+   no ip address
+   exit
+vlan 150
+   name "VLAN150"
+   tagged 25-28
+   no ip address
+   exit
+vlan 151
+   name "VLAN151"
+   tagged 25-28
+   no ip address
+   exit
+vlan 152
+   name "VLAN152"
+   tagged 25-28
+   no ip address
+   exit
+vlan 153
+   name "VLAN153"
+   tagged 25-28
+   no ip address
+   exit
+vlan 154
+   name "VLAN154"
+   tagged 25-28
+   no ip address
+   exit
+vlan 155
+   name "VLAN155"
+   tagged 25-28
+   no ip address
+   exit
+vlan 156
+   name "VLAN156"
+   tagged 25-28
+   no ip address
+   exit
+vlan 157
+   name "VLAN157"
+   tagged 25-28
+   no ip address
+   exit
+vlan 158
+   name "VLAN158"
+   tagged 25-28
+   no ip address
+   exit
+vlan 159
+   name "VLAN159"
+   tagged 25-28
+   no ip address
+   exit
+vlan 160
+   name "VLAN160"
+   tagged 25-28
+   no ip address
+   exit
+vlan 161
+   name "VLAN161"
+   tagged 25-28
+   no ip address
+   exit
+vlan 162
+   name "VLAN162"
+   tagged 25-28
+   no ip address
+   exit
+vlan 163
+   name "VLAN163"
+   tagged 25-28
+   no ip address
+   exit
+vlan 164
+   name "VLAN164"
+   tagged 25-28
+   no ip address
+   exit
+vlan 165
+   name "VLAN165"
+   tagged 25-28
+   no ip address
+   exit
+vlan 166
+   name "VLAN166"
+   tagged 25-28
+   no ip address
+   exit
+vlan 167
+   name "VLAN167"
+   tagged 25-28
+   no ip address
+   exit
+vlan 168
+   name "VLAN168"
+   tagged 25-28
+   no ip address
+   exit
+vlan 169
+   name "VLAN169"
+   tagged 25-28
+   no ip address
+   exit
+vlan 170
+   name "VLAN170"
+   tagged 25-28
+   no ip address
+   exit
+vlan 171
+   name "VLAN171"
+   tagged 25-28
+   no ip address
+   exit
+vlan 172
+   name "VLAN172"
+   tagged 25-28
+   no ip address
+   exit
+vlan 173
+   name "VLAN173"
+   tagged 25-28
+   no ip address
+   exit
+vlan 174
+   name "VLAN174"
+   tagged 25-28
+   no ip address
+   exit
+vlan 175
+   name "VLAN175"
+   tagged 25-28
+   no ip address
+   exit
+vlan 176
+   name "VLAN176"
+   tagged 25-28
+   no ip address
+   exit
+vlan 177
+   name "VLAN177"
+   tagged 25-28
+   no ip address
+   exit
+vlan 178
+   name "VLAN178"
+   tagged 25-28
+   no ip address
+   exit
+vlan 179
+   name "VLAN179"
+   tagged 25-28
+   no ip address
+   exit
+vlan 180
+   name "VLAN180"
+   tagged 25-28
+   no ip address
+   exit
+vlan 181
+   name "VLAN181"
+   tagged 25-28
+   no ip address
+   exit
+vlan 182
+   name "VLAN182"
+   tagged 25-28
+   no ip address
+   exit
+vlan 183
+   name "VLAN183"
+   tagged 25-28
+   no ip address
+   exit
+vlan 184
+   name "VLAN184"
+   tagged 25-28
+   no ip address
+   exit
+vlan 185
+   name "VLAN185"
+   tagged 25-28
+   no ip address
+   exit
+vlan 186
+   name "VLAN186"
+   tagged 25-28
+   no ip address
+   exit
+vlan 187
+   name "VLAN187"
+   tagged 25-28
+   no ip address
+   exit
+vlan 188
+   name "VLAN188"
+   tagged 25-28
+   no ip address
+   exit
+vlan 189
+   name "VLAN189"
+   tagged 25-28
+   no ip address
+   exit
+vlan 190
+   name "VLAN190"
+   tagged 25-28
+   no ip address
+   exit
+vlan 191
+   name "VLAN191"
+   tagged 25-28
+   no ip address
+   exit
+vlan 192
+   name "VLAN192"
+   tagged 25-28
+   no ip address
+   exit
+vlan 193
+   name "VLAN193"
+   tagged 25-28
+   no ip address
+   exit
+vlan 194
+   name "VLAN194"
+   tagged 25-28
+   no ip address
+   exit
+vlan 195
+   name "VLAN195"
+   tagged 25-28
+   no ip address
+   exit
+vlan 196
+   name "VLAN196"
+   tagged 25-28
+   no ip address
+   exit
+vlan 197
+   name "VLAN197"
+   tagged 25-28
+   no ip address
+   exit
+vlan 198
+   name "VLAN198"
+   tagged 25-28
+   no ip address
+   exit
+vlan 199
+   name "VLAN199"
+   tagged 25-28
+   no ip address
+   exit
+vlan 200
+   name "VLAN200"
+   tagged 25-28
+   no ip address
+   exit
+vlan 201
+   name "VLAN201"
+   tagged 25-28
+   no ip address
+   exit
+vlan 202
+   name "VLAN202"
+   tagged 25-28
+   no ip address
+   exit
+vlan 203
+   name "VLAN203"
+   tagged 25-28
+   no ip address
+   exit
+vlan 204
+   name "VLAN204"
+   tagged 25-28
+   no ip address
+   exit
+vlan 205
+   name "VLAN205"
+   tagged 25-28
+   no ip address
+   exit
+vlan 206
+   name "VLAN206"
+   tagged 25-28
+   no ip address
+   exit
+vlan 207
+   name "VLAN207"
+   tagged 25-28
+   no ip address
+   exit
+vlan 208
+   name "VLAN208"
+   tagged 25-28
+   no ip address
+   exit
+vlan 209
+   name "VLAN209"
+   tagged 25-28
+   no ip address
+   exit
+vlan 210
+   name "VLAN210"
+   tagged 25-28
+   no ip address
+   exit
+vlan 211
+   name "VLAN211"
+   tagged 25-28
+   no ip address
+   exit
+vlan 212
+   name "VLAN212"
+   tagged 25-28
+   no ip address
+   exit
+vlan 213
+   name "VLAN213"
+   tagged 25-28
+   no ip address
+   exit
+vlan 214
+   name "VLAN214"
+   tagged 25-28
+   no ip address
+   exit
+vlan 215
+   name "VLAN215"
+   tagged 25-28
+   no ip address
+   exit
+vlan 216
+   name "VLAN216"
+   tagged 25-28
+   no ip address
+   exit
+vlan 217
+   name "VLAN217"
+   tagged 25-28
+   no ip address
+   exit
+vlan 218
+   name "VLAN218"
+   tagged 25-28
+   no ip address
+   exit
+vlan 219
+   name "VLAN219"
+   tagged 25-28
+   no ip address
+   exit
+vlan 220
+   name "VLAN220"
+   tagged 25-28
+   no ip address
+   exit
+vlan 221
+   name "VLAN221"
+   tagged 25-28
+   no ip address
+   exit
+vlan 222
+   name "VLAN222"
+   tagged 25-28
+   no ip address
+   exit
+vlan 223
+   name "VLAN223"
+   tagged 25-28
+   no ip address
+   exit
+vlan 224
+   name "VLAN224"
+   tagged 25-28
+   no ip address
+   exit
+vlan 225
+   name "VLAN225"
+   tagged 25-28
+   no ip address
+   exit
+vlan 226
+   name "VLAN226"
+   tagged 25-28
+   no ip address
+   exit
+vlan 227
+   name "VLAN227"
+   tagged 25-28
+   no ip address
+   exit
+vlan 228
+   name "VLAN228"
+   tagged 25-28
+   no ip address
+   exit
+vlan 229
+   name "VLAN229"
+   tagged 25-28
+   no ip address
+   exit
+vlan 230
+   name "VLAN230"
+   tagged 25-28
+   no ip address
+   exit
+vlan 231
+   name "VLAN231"
+   tagged 25-28
+   no ip address
+   exit
+vlan 232
+   name "VLAN232"
+   tagged 25-28
+   no ip address
+   exit
+vlan 233
+   name "VLAN233"
+   tagged 25-28
+   no ip address
+   exit
+vlan 234
+   name "VLAN234"
+   tagged 25-28
+   no ip address
+   exit
+vlan 235
+   name "VLAN235"
+   tagged 25-28
+   no ip address
+   exit
+vlan 236
+   name "VLAN236"
+   tagged 25-28
+   no ip address
+   exit
+vlan 237
+   name "VLAN237"
+   tagged 25-28
+   no ip address
+   exit
+vlan 238
+   name "VLAN238"
+   tagged 25-28
+   no ip address
+   exit
+vlan 239
+   name "VLAN239"
+   tagged 25-28
+   no ip address
+   exit
+vlan 240
+   name "VLAN240"
+   tagged 25-28
+   no ip address
+   exit
+vlan 241
+   name "VLAN241"
+   tagged 25-28
+   no ip address
+   exit
+vlan 242
+   name "VLAN242"
+   tagged 25-28
+   no ip address
+   exit
+vlan 243
+   name "VLAN243"
+   tagged 25-28
+   no ip address
+   exit
+vlan 244
+   name "VLAN244"
+   tagged 25-28
+   no ip address
+   exit
+vlan 245
+   name "VLAN245"
+   tagged 25-28
+   no ip address
+   exit
+vlan 246
+   name "VLAN246"
+   tagged 25-28
+   no ip address
+   exit
+vlan 247
+   name "VLAN247"
+   tagged 25-28
+   no ip address
+   exit
+vlan 248
+   name "VLAN248"
+   tagged 25-28
+   no ip address
+   exit
+vlan 249
+   name "VLAN249"
+   tagged 25-28
+   no ip address
+   exit
+vlan 250
+   name "VLAN250"
+   tagged 25-28
+   no ip address
+   exit
+vlan 251
+   name "VLAN251"
+   tagged 25-28
+   no ip address
+   exit
+vlan 252
+   name "VLAN252"
+   tagged 25-28
+   no ip address
+   exit
+vlan 253
+   name "VLAN253"
+   tagged 25-28
+   no ip address
+   exit
+vlan 254
+   name "VLAN254"
+   tagged 25-28
+   no ip address
+   exit
+vlan 255
+   name "VLAN255"
+   tagged 25-28
+   no ip address
+   exit
+vlan 256
+   name "VLAN256"
+   tagged 25-28
+   no ip address
+   exit
+vlan 257
+   name "VLAN257"
+   tagged 25-28
+   no ip address
+   exit
+vlan 258
+   name "VLAN258"
+   tagged 25-28
+   no ip address
+   exit
+vlan 259
+   name "VLAN259"
+   tagged 25-28
+   no ip address
+   exit
+vlan 260
+   name "VLAN260"
+   tagged 25-28
+   no ip address
+   exit
+vlan 261
+   name "VLAN261"
+   tagged 25-28
+   no ip address
+   exit
+vlan 262
+   name "VLAN262"
+   tagged 25-28
+   no ip address
+   exit
+vlan 263
+   name "VLAN263"
+   tagged 25-28
+   no ip address
+   exit
+vlan 264
+   name "VLAN264"
+   tagged 25-28
+   no ip address
+   exit
+vlan 265
+   name "VLAN265"
+   tagged 25-28
+   no ip address
+   exit
+vlan 266
+   name "VLAN266"
+   tagged 25-28
+   no ip address
+   exit
+vlan 267
+   name "VLAN267"
+   tagged 25-28
+   no ip address
+   exit
+vlan 268
+   name "VLAN268"
+   tagged 25-28
+   no ip address
+   exit
+vlan 269
+   name "VLAN269"
+   tagged 25-28
+   no ip address
+   exit
+vlan 270
+   name "VLAN270"
+   tagged 25-28
+   no ip address
+   exit
+vlan 271
+   name "VLAN271"
+   tagged 25-28
+   no ip address
+   exit
+vlan 272
+   name "VLAN272"
+   tagged 25-28
+   no ip address
+   exit
+vlan 273
+   name "VLAN273"
+   tagged 25-28
+   no ip address
+   exit
+vlan 274
+   name "VLAN274"
+   tagged 25-28
+   no ip address
+   exit
+vlan 275
+   name "VLAN275"
+   tagged 25-28
+   no ip address
+   exit
+vlan 276
+   name "VLAN276"
+   tagged 25-28
+   no ip address
+   exit
+vlan 277
+   name "VLAN277"
+   tagged 25-28
+   no ip address
+   exit
+vlan 278
+   name "VLAN278"
+   tagged 25-28
+   no ip address
+   exit
+vlan 279
+   name "VLAN279"
+   tagged 25-28
+   no ip address
+   exit
+vlan 280
+   name "VLAN280"
+   tagged 25-28
+   no ip address
+   exit
+vlan 281
+   name "VLAN281"
+   tagged 25-28
+   no ip address
+   exit
+vlan 282
+   name "VLAN282"
+   tagged 25-28
+   no ip address
+   exit
+vlan 283
+   name "VLAN283"
+   tagged 25-28
+   no ip address
+   exit
+vlan 284
+   name "VLAN284"
+   tagged 25-28
+   no ip address
+   exit
+vlan 285
+   name "VLAN285"
+   tagged 25-28
+   no ip address
+   exit
+vlan 286
+   name "VLAN286"
+   tagged 25-28
+   no ip address
+   exit
+vlan 287
+   name "VLAN287"
+   tagged 25-28
+   no ip address
+   exit
+vlan 288
+   name "VLAN288"
+   tagged 25-28
+   no ip address
+   exit
+vlan 289
+   name "VLAN289"
+   tagged 25-28
+   no ip address
+   exit
+vlan 290
+   name "VLAN290"
+   tagged 25-28
+   no ip address
+   exit
+vlan 291
+   name "VLAN291"
+   tagged 25-28
+   no ip address
+   exit
+vlan 292
+   name "VLAN292"
+   tagged 25-28
+   no ip address
+   exit
+vlan 293
+   name "VLAN293"
+   tagged 25-28
+   no ip address
+   exit
+vlan 294
+   name "VLAN294"
+   tagged 25-28
+   no ip address
+   exit
+vlan 295
+   name "VLAN295"
+   tagged 25-28
+   no ip address
+   exit
+vlan 296
+   name "VLAN296"
+   tagged 25-28
+   no ip address
+   exit
+vlan 297
+   name "VLAN297"
+   tagged 25-28
+   no ip address
+   exit
+vlan 298
+   name "VLAN298"
+   tagged 25-28
+   no ip address
+   exit
+vlan 299
+   name "VLAN299"
+   tagged 25-28
+   no ip address
+   exit
+vlan 300
+   name "VLAN300"
+   tagged 25-28
+   no ip address
+   exit
+vlan 301
+   name "VLAN301"
+   tagged 25-28
+   no ip address
+   exit
+vlan 302
+   name "VLAN302"
+   tagged 25-28
+   no ip address
+   exit
+vlan 303
+   name "VLAN303"
+   tagged 25-28
+   no ip address
+   exit
+vlan 304
+   name "VLAN304"
+   tagged 25-28
+   no ip address
+   exit
+vlan 305
+   name "VLAN305"
+   tagged 25-28
+   no ip address
+   exit
+vlan 306
+   name "VLAN306"
+   tagged 25-28
+   no ip address
+   exit
+vlan 307
+   name "VLAN307"
+   tagged 25-28
+   no ip address
+   exit
+vlan 308
+   name "VLAN308"
+   tagged 25-28
+   no ip address
+   exit
+vlan 309
+   name "VLAN309"
+   tagged 25-28
+   no ip address
+   exit
+vlan 310
+   name "VLAN310"
+   tagged 25-28
+   no ip address
+   exit
+vlan 311
+   name "VLAN311"
+   tagged 25-28
+   no ip address
+   exit
+vlan 312
+   name "VLAN312"
+   tagged 25-28
+   no ip address
+   exit
+vlan 313
+   name "VLAN313"
+   tagged 25-28
+   no ip address
+   exit
+vlan 314
+   name "VLAN314"
+   tagged 25-28
+   no ip address
+   exit
+vlan 315
+   name "VLAN315"
+   tagged 25-28
+   no ip address
+   exit
+vlan 316
+   name "VLAN316"
+   tagged 25-28
+   no ip address
+   exit
+vlan 317
+   name "VLAN317"
+   tagged 25-28
+   no ip address
+   exit
+vlan 318
+   name "VLAN318"
+   tagged 25-28
+   no ip address
+   exit
+vlan 319
+   name "VLAN319"
+   tagged 25-28
+   no ip address
+   exit
+vlan 320
+   name "VLAN320"
+   tagged 25-28
+   no ip address
+   exit
+vlan 321
+   name "VLAN321"
+   tagged 25-28
+   no ip address
+   exit
+vlan 322
+   name "VLAN322"
+   tagged 25-28
+   no ip address
+   exit
+vlan 323
+   name "VLAN323"
+   tagged 25-28
+   no ip address
+   exit
+vlan 324
+   name "VLAN324"
+   tagged 25-28
+   no ip address
+   exit
+vlan 325
+   name "VLAN325"
+   tagged 25-28
+   no ip address
+   exit
+vlan 326
+   name "VLAN326"
+   tagged 25-28
+   no ip address
+   exit
+vlan 327
+   name "VLAN327"
+   tagged 25-28
+   no ip address
+   exit
+vlan 328
+   name "VLAN328"
+   tagged 25-28
+   no ip address
+   exit
+vlan 329
+   name "VLAN329"
+   tagged 25-28
+   no ip address
+   exit
+vlan 330
+   name "VLAN330"
+   tagged 25-28
+   no ip address
+   exit
+vlan 331
+   name "VLAN331"
+   tagged 25-28
+   no ip address
+   exit
+vlan 332
+   name "VLAN332"
+   tagged 25-28
+   no ip address
+   exit
+vlan 333
+   name "VLAN333"
+   tagged 25-28
+   no ip address
+   exit
+vlan 334
+   name "VLAN334"
+   tagged 25-28
+   no ip address
+   exit
+vlan 335
+   name "VLAN335"
+   tagged 25-28
+   no ip address
+   exit
+vlan 336
+   name "VLAN336"
+   tagged 25-28
+   no ip address
+   exit
+vlan 337
+   name "VLAN337"
+   tagged 25-28
+   no ip address
+   exit
+vlan 338
+   name "VLAN338"
+   tagged 25-28
+   no ip address
+   exit
+vlan 339
+   name "VLAN339"
+   tagged 25-28
+   no ip address
+   exit
+vlan 340
+   name "VLAN340"
+   tagged 25-28
+   no ip address
+   exit
+vlan 341
+   name "VLAN341"
+   tagged 25-28
+   no ip address
+   exit
+vlan 342
+   name "VLAN342"
+   tagged 25-28
+   no ip address
+   exit
+vlan 343
+   name "VLAN343"
+   tagged 25-28
+   no ip address
+   exit
+vlan 344
+   name "VLAN344"
+   tagged 25-28
+   no ip address
+   exit
+vlan 345
+   name "VLAN345"
+   tagged 25-28
+   no ip address
+   exit
+vlan 346
+   name "VLAN346"
+   tagged 25-28
+   no ip address
+   exit
+vlan 347
+   name "VLAN347"
+   tagged 25-28
+   no ip address
+   exit
+vlan 348
+   name "VLAN348"
+   tagged 25-28
+   no ip address
+   exit
+vlan 349
+   name "VLAN349"
+   tagged 25-28
+   no ip address
+   exit
+vlan 350
+   name "VLAN350"
+   tagged 25-28
+   no ip address
+   exit
+vlan 500
+   name "VOICE"
+   tagged 1-28
+   no ip address
+   voice
+   exit
+no tftp server
+loop-protect 1-28
+no dhcp config-file-update
+password manager
+password operator
