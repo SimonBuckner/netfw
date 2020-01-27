@@ -6,24 +6,22 @@ import "sort"
 
 func main() {
 
-	s := NewSwitch(14, OddsEvensPorts)
+	fw := NewFirewall("Islington")
+	wan0 := NewInterface("WAN0", WANZone)
+	fw.AddInterface(wan0)
+	mad0 := NewInterface("MAD0", MADZone)
+	fw.AddInterface(mad0)
+	lan0 := NewInterface("LAN0", LANZone)
+	fw.AddInterface(lan0)
 
-	s.SetPortUse(7, LinkPort)
-	for i := 1; i <= 6; i++ {
-		s.SetPortUse(i, EdgePort)
+	sw1 := NewSwitch(14, OddsEvensPorts)
+	for i := 1; i <= 12; i++ {
+		sw1.SetPortUse(i, EdgePort)
 	}
-	s.SetPortUse(9, LinkPort)
-	s.SetPortUse(14, LinkPort)
+	sw1.SetPortUse(13, LinkPort)
+	sw1.SetPortUse(14, LinkPort)
 
-	s.DumpSwitch()
-
-	// s.SetPortUse(14, LinkPort)
-	// for i := 9; i <= 13; i++ {
-	// 	s.SetPortUse(i, EdgePort)
-	// }
-	// for i := 13; i <= 14; i++ {
-	// 	s.SetPortUse(i, LinkPort)
-	// }
+	fw.Dump()
 
 }
 
@@ -31,6 +29,10 @@ func main() {
 // separated by '-', so '1,2,3,4' would become '1-4' and individual numbers are
 // separated by ',', so '1,2,3,4,7,9' would become '1-4,7,9'
 func intArrayToText(array []int) string {
+	if len(array) == 0 {
+		return ""
+	}
+
 	sort.Ints(array)
 	text := strconv.Itoa(array[0])
 	index := 1

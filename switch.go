@@ -95,9 +95,10 @@ func (s *Switch) DumpSwitch() {
 		keys[k-1] = k
 	}
 
-	edgeKeys := []int{}
-	linkKeys := []int{}
-	noConfig := []int{}
+	var edgeKeys []int
+	var linkKeys []int
+	var noConfig []int
+
 	for _, key := range keys {
 		switch s.Ports[key].Use {
 		case EdgePort:

@@ -45,4 +45,11 @@ func TestArrayToText(t *testing.T) {
 		}
 	}
 
+	{
+		test := intArrayToText([]int{})
+		if test != "" {
+			t.Errorf("Expecting '' but got '%v'", test)
+		}
+	}
+
 }
