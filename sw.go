@@ -13,6 +13,38 @@ type SW struct {
 	Ports   map[int]*Port
 }
 
+// NewSW creates a new switch
+func NewSW(ports int, direction PortDirection) *SW {
+	s := SW{
+		PortDirection: direction,
+		MaxPort:       ports,
+		Ports:         make(map[int]*Port),
+	}
+	// for i := 1; i <= ports; i++ {
+	// 	s.Ports[i] = &Port{
+	// 		Index:       i,
+	// 		Description: fmt.Sprintf("Port %2d", i),
+	// 		Use:         NotConfigured,
+	// 	}
+	// }
+	return &s
+}
+
+// IsFW returns false as this is not a firewall
+func (sw *SW) IsFW() bool {
+	return false
+}
+
+// IsSW returns true as this is a switch
+func (sw *SW) IsSW() bool {
+	return true
+}
+
+// IsIface returns false as this is not an Iface
+func (sw *SW) IsIface() bool {
+	return false
+}
+
 // Port represents a port on a network switch
 type Port struct {
 	Index       int
@@ -65,35 +97,18 @@ var portUseText = map[PortUse]string{
 	NotConfigured: "Not Configured",
 }
 
-// NewSW creates a new switch
-func NewSW(maxPort int, direction PortDirection) *SW {
-	s := SW{
-		PortDirection: direction,
-		MaxPort:       maxPort,
-		Ports:         make(map[int]*Port),
-	}
-	for i := 1; i <= maxPort; i++ {
-		s.Ports[i] = &Port{
-			Index:       i,
-			Description: fmt.Sprintf("Port %2d", i),
-			Use:         NotConfigured,
-		}
-	}
-	return &s
-}
-
 // SetPortUse configures the specified port for a specific use
-func (s *SW) SetPortUse(index int, use PortUse) {
-	if port, ok := s.Ports[index]; ok {
+func (sw *SW) SetPortUse(index int, use PortUse) {
+	if port, ok := sw.Ports[index]; ok {
 		port.Use = use
 	}
 }
 
 // Dump produces a textual representation of a zone config on a firewall
-func (s *SW) Dump() {
+func (sw *SW) Dump() {
 
-	keys := make([]int, s.MaxPort)
-	for k := range s.Ports {
+	keys := make([]int, sw.MaxPort)
+	for k := range sw.Ports {
 		keys[k-1] = k
 	}
 
@@ -102,7 +117,7 @@ func (s *SW) Dump() {
 	var noConfig []int
 
 	for _, key := range keys {
-		switch s.Ports[key].Use {
+		switch sw.Ports[key].Use {
 		case EdgePort:
 			edgeKeys = append(edgeKeys, key)
 		case LinkPort:
@@ -112,8 +127,8 @@ func (s *SW) Dump() {
 		}
 	}
 
-	fmt.Printf("\nPort Layout : %v", s.PortDirection.ToString())
-	fmt.Printf("\nMax Ports   : %2d", s.MaxPort)
+	fmt.Printf("\nPort Layout : %v", sw.PortDirection.ToString())
+	fmt.Printf("\nMax Ports   : %2d", sw.MaxPort)
 	fmt.Printf("\nNo Config   : %v", intArrayToText(noConfig))
 	fmt.Printf("\nLink Ports  : %v", intArrayToText(linkKeys))
 	fmt.Printf("\nEdge Ports  : %v", intArrayToText(edgeKeys))

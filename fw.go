@@ -28,6 +28,31 @@ func NewFW(name string) *FW {
 	}
 }
 
+// IsFW returns true if the device is a FW
+func (fw *FW) IsFW() bool {
+	return true
+}
+
+// IsSW returns true as this is a firewall
+func (fw *FW) IsSW() bool {
+	return false
+}
+
+// IsIface returns false as this is not an Iface
+func (fw *FW) IsIface() bool {
+	return false
+}
+
+// GetParent returns the parent device
+func (fw *FW) GetParent() Device {
+	return nil
+}
+
+// SetParent is invalid as a firewall has no parent
+func (fw *FW) SetParent(parent Device) error {
+	return fmt.Errorf("unable to set parent on a firewall")
+}
+
 // AddIface adds an interface to the firewall
 func (fw *FW) AddIface(iface *Iface) error {
 	if _, found := fw.Ifaces[iface.Label]; found {

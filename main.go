@@ -5,8 +5,8 @@ type Device interface {
 	IsFW() bool
 	IsSW() bool
 	IsIface() bool
-	GetParent() *Device
-	SetParent() *Device
+	// GetParent() Device
+	// SetParent(parent Device) error
 }
 
 // Zone represents a network zone

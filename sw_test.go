@@ -2,6 +2,8 @@ package main
 
 import "testing"
 
+var _ Device = &SW{}
+
 func TestArrayToText(t *testing.T) {
 	{
 		test := intArrayToText([]int{1, 2, 3, 4, 5})
