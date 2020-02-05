@@ -1,20 +1,44 @@
 package main
 
-import "strconv"
+// Device describes the common features of all devices
+type Device interface {
+	IsFW() bool
+	IsSW() bool
+	IsIface() bool
+	GetParent() *Device
+	SetParent() *Device
+}
 
-import "sort"
+// Zone represents a network zone
+type Zone int
+
+const (
+	// AdminZone denotete the local management and monitoring zone
+	AdminZone Zone = iota
+	// PublicZone denotes public (internet) facing network zone
+	PublicZone
+	// PrivateZone denotes local private network zone
+	PrivateZone
+)
+
+var zoneName = map[Zone]string{
+	AdminZone:   "admin",
+	PublicZone:  "public",
+	PrivateZone: "prvate",
+}
 
 func main() {
 
-	fw := NewFirewall("Islington")
-	wan0 := NewInterface("WAN0", WANZone)
-	fw.AddInterface(wan0)
-	mad0 := NewInterface("MAD0", MADZone)
-	fw.AddInterface(mad0)
-	lan0 := NewInterface("LAN0", LANZone)
-	fw.AddInterface(lan0)
+	fw := NewFW("Islington")
 
-	sw1 := NewSwitch(14, OddsEvensPorts)
+	wan0 := NewIface("WAN0", PublicZone)
+	fw.AddIface(wan0)
+	mad0 := NewIface("MAD0", AdminZone)
+	fw.AddIface(mad0)
+	lan0 := NewIface("LAN0", PrivateZone)
+	fw.AddIface(lan0)
+
+	sw1 := NewSW(14, OddsEvensPorts)
 	for i := 1; i <= 12; i++ {
 		sw1.SetPortUse(i, EdgePort)
 	}
@@ -25,40 +49,6 @@ func main() {
 
 }
 
-// intArrayToText turns a list of int to a text description where ranges are
-// separated by '-', so '1,2,3,4' would become '1-4' and individual numbers are
-// separated by ',', so '1,2,3,4,7,9' would become '1-4,7,9'
-func intArrayToText(array []int) string {
-	if len(array) == 0 {
-		return ""
-	}
+func printSWConfigs(devices *Device) {
 
-	sort.Ints(array)
-	text := strconv.Itoa(array[0])
-	index := 1
-	run := 0
-	for {
-		if index == len(array) {
-			if run > 0 {
-				text = text + "-" + strconv.Itoa(array[index-1])
-			}
-			return text
-		}
-		if array[index]-1 == array[index-1] {
-			run++
-			index++
-			continue
-		}
-		if array[index] == array[index-1] {
-			// Remove duplicates
-			index++
-			continue
-		}
-		if run > 0 {
-			text = text + "-" + strconv.Itoa(array[index-1])
-			run = 0
-		}
-		text = text + "," + strconv.Itoa(array[index])
-		index++
-	}
 }

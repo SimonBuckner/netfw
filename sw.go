@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"sort"
+	"strconv"
 )
 
-// Switch represents a network switch
-type Switch struct {
+// SW represents a network swith
+type SW struct {
 	PortDirection
 	MaxPort int
 	Ports   map[int]*Port
@@ -63,9 +65,9 @@ var portUseText = map[PortUse]string{
 	NotConfigured: "Not Configured",
 }
 
-// NewSwitch creates a new switch
-func NewSwitch(maxPort int, direction PortDirection) *Switch {
-	s := Switch{
+// NewSW creates a new switch
+func NewSW(maxPort int, direction PortDirection) *SW {
+	s := SW{
 		PortDirection: direction,
 		MaxPort:       maxPort,
 		Ports:         make(map[int]*Port),
@@ -81,14 +83,14 @@ func NewSwitch(maxPort int, direction PortDirection) *Switch {
 }
 
 // SetPortUse configures the specified port for a specific use
-func (s *Switch) SetPortUse(index int, use PortUse) {
+func (s *SW) SetPortUse(index int, use PortUse) {
 	if port, ok := s.Ports[index]; ok {
 		port.Use = use
 	}
 }
 
-// DumpSwitch shows the config of a switch
-func (s *Switch) DumpSwitch() {
+// Dump produces a textual representation of a zone config on a firewall
+func (s *SW) Dump() {
 
 	keys := make([]int, s.MaxPort)
 	for k := range s.Ports {
@@ -103,13 +105,10 @@ func (s *Switch) DumpSwitch() {
 		switch s.Ports[key].Use {
 		case EdgePort:
 			edgeKeys = append(edgeKeys, key)
-			// fmt.Printf("\nEdge : %2d", key)
 		case LinkPort:
 			linkKeys = append(linkKeys, key)
-			// fmt.Printf("\nLink :  %2d", key)
 		default:
 			noConfig = append(noConfig, key)
-			// fmt.Printf("\nNot  :  %2d", key)
 		}
 	}
 
@@ -119,4 +118,42 @@ func (s *Switch) DumpSwitch() {
 	fmt.Printf("\nLink Ports  : %v", intArrayToText(linkKeys))
 	fmt.Printf("\nEdge Ports  : %v", intArrayToText(edgeKeys))
 
+}
+
+// intArrayToText turns a list of int to a text description where ranges are
+// separated by '-', so '1,2,3,4' would become '1-4' and individual numbers are
+// separated by ',', so '1,2,3,4,7,9' would become '1-4,7,9'
+func intArrayToText(array []int) string {
+	if len(array) == 0 {
+		return ""
+	}
+
+	sort.Ints(array)
+	text := strconv.Itoa(array[0])
+	index := 1
+	run := 0
+	for {
+		if index == len(array) {
+			if run > 0 {
+				text = text + "-" + strconv.Itoa(array[index-1])
+			}
+			return text
+		}
+		if array[index]-1 == array[index-1] {
+			run++
+			index++
+			continue
+		}
+		if array[index] == array[index-1] {
+			// Remove duplicates
+			index++
+			continue
+		}
+		if run > 0 {
+			text = text + "-" + strconv.Itoa(array[index-1])
+			run = 0
+		}
+		text = text + "," + strconv.Itoa(array[index])
+		index++
+	}
 }
