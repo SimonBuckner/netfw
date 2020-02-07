@@ -4,7 +4,7 @@ import "fmt"
 
 // Site represents a physical location
 type Site struct {
-	name    string
+	device
 	primary *Firewall
 	backup  *Firewall
 }
@@ -12,13 +12,11 @@ type Site struct {
 // NewSite builsd a new Site object
 func NewSite(name string) *Site {
 	return &Site{
-		name: name,
+		device: device{
+			name:  name,
+			class: SiteClass,
+		},
 	}
-}
-
-// GetPath returns this divices location
-func (s *Site) GetPath() string {
-	return "site=" + s.name
 }
 
 // SetPrimaryFirewall sets the primary firewall for the site

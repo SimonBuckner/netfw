@@ -1,46 +1,65 @@
 package netfw
 
-// import "fmt"
-
-// Path are objects that can return their lacation
-type Path interface {
+// Device are objects that can return their lacation
+type Device interface {
 	GetPath() string
+	setParent(parent Device)
+	getParent() Device
 }
 
-// // baseDevice
-// type baseDevice struct {
-// 	label    string
-// 	parent   *baseDevice
-// 	children []*baseDevice
-// }
+var _ Device = &device{}
 
-// // newBaseDevice ..
-// func newBaseDevice(label string) *baseDevice {
-// 	return &baseDevice{
-// 		label:  label,
-// 		parent: nil,
-// 	}
-// }
+// device represents the core features of a device
+type device struct {
+	name   string
+	class  Class
+	parent Device
+}
 
-// // GetPath ..
-// func (bd *baseDevice) GetPath() string {
-// 	fmt.Println(bd.label)
-// 	if bd.parent == nil {
-// 		return "\\" + bd.label
-// 	}
-// 	return bd.parent.GetPath() + "\\" + bd.label
-// }
+// Class denotes the type of device
+type Class int
 
-// // SetParent ..
-// func (bd *baseDevice) SetParent(parent *baseDevice) error {
-// 	if bd.parent != nil {
-// 		return fmt.Errorf("cannot set parent when parent already exists")
-// 	}
-// 	bd.parent = parent
-// 	return nil
-// }
+const (
+	// SiteClass ..
+	SiteClass Class = iota
+	// FirewallClass ..
+	FirewallClass
+	// IfaceClass ..
+	IfaceClass
+	// SwitchClass ..
+	SwitchClass
+	// VlanClass ..
+	VlanClass
+)
 
-// // GetChildren ..
-// func (bd *baseDevice) GetChildren() []*baseDevice {
-// 	return bd.children
-// }
+var classText = map[Class]string{
+	SiteClass:     "site",
+	FirewallClass: "firewall",
+	IfaceClass:    "iface",
+	SwitchClass:   "switch",
+	VlanClass:     "vlan",
+}
+
+// ToString returnes a string representation fo a class
+func (c Class) ToString() string {
+	return classText[c]
+}
+
+// GetPath returns this devices location
+func (d *device) GetPath() string {
+	path := ""
+	if d.parent != nil {
+		path = d.parent.GetPath() + ","
+	}
+	return path + d.class.ToString() + "=" + d.name
+}
+
+// getParent returns the parent device
+func (d *device) getParent() Device {
+	return d.parent
+}
+
+// setParent set the parent device for this device
+func (d *device) setParent(parent Device) {
+	d.parent = parent
+}
