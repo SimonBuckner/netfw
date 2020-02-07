@@ -1,46 +1,46 @@
 package netfw
 
-import "fmt"
+// import "fmt"
 
-// Device ..
-type Device interface {
+// Path are objects that can return their lacation
+type Path interface {
 	GetPath() string
-	SetParent(parent Device) error
-	SetChild(child Device) error
 }
 
-// baseDevice
-type baseDevice struct {
-	label  string
-	parent *baseDevice
-}
+// // baseDevice
+// type baseDevice struct {
+// 	label    string
+// 	parent   *baseDevice
+// 	children []*baseDevice
+// }
 
-// newBaseDevice ..
-func newBaseDevice(label string) *baseDevice {
-	return &baseDevice{
-		label:  label,
-		parent: nil,
-	}
-}
+// // newBaseDevice ..
+// func newBaseDevice(label string) *baseDevice {
+// 	return &baseDevice{
+// 		label:  label,
+// 		parent: nil,
+// 	}
+// }
 
-// GetPath ..
-func (bd *baseDevice) GetPath() string {
-	fmt.Println(bd.label)
-	if bd.parent == nil {
-		return "\\" + bd.label
-	}
-	return bd.parent.GetPath() + "\\" + bd.label
-}
+// // GetPath ..
+// func (bd *baseDevice) GetPath() string {
+// 	fmt.Println(bd.label)
+// 	if bd.parent == nil {
+// 		return "\\" + bd.label
+// 	}
+// 	return bd.parent.GetPath() + "\\" + bd.label
+// }
 
-// SetParent ..
-func (bd *baseDevice) SetParent(parent *baseDevice) error {
-	if bd.parent != nil {
-		return fmt.Errorf("cannot set parent when parent already exists")
-	}
-	bd.parent = parent
-	return nil
-}
+// // SetParent ..
+// func (bd *baseDevice) SetParent(parent *baseDevice) error {
+// 	if bd.parent != nil {
+// 		return fmt.Errorf("cannot set parent when parent already exists")
+// 	}
+// 	bd.parent = parent
+// 	return nil
+// }
 
-func main() {
-
-}
+// // GetChildren ..
+// func (bd *baseDevice) GetChildren() []*baseDevice {
+// 	return bd.children
+// }
