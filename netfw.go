@@ -1,7 +1,5 @@
 package netfw
 
-import "fmt"
-
 // Device are objects that can return their lacation
 type Device interface {
 	GetName() string
@@ -10,6 +8,7 @@ type Device interface {
 	getParent() Device
 	addChild(child Device)
 	childExists(child Device) bool
+	getChildren() []Device
 }
 
 var _ Device = &device{}
@@ -92,21 +91,11 @@ func (d *device) childExists(child Device) bool {
 	return false
 }
 
-// ShowSite lists out all the devices in the site
-func ShowSite(site *Site) {
-	fmt.Println(site.GetPath())
-	ShowFirewall(site.primary)
-}
-
-// ShowFirewall ..
-func ShowFirewall(fw *Firewall) {
-	fmt.Println(fw.GetPath())
-	for _, iface := range fw.interfaces {
-		ShowIface(iface)
+// getChildren returns all child devices
+func (d *device) getChildren() []Device {
+	children := make([]Device, 0, len(d.children))
+	for _, v := range d.children {
+		children = append(children, v)
 	}
-}
-
-// ShowIface ..
-func ShowIface(iface *Iface) {
-	fmt.Println(iface.GetPath())
+	return children
 }

@@ -111,3 +111,34 @@ func TestDeviceChildExists(t *testing.T) {
 		}
 	}
 }
+
+func TestDeviceGetChildren(t *testing.T) {
+	parent := &device{
+		name:  "parent",
+		class: SiteClass,
+	}
+	child1 := &device{
+		name:  "child1",
+		class: FirewallClass,
+	}
+	child2 := &device{
+		name:  "child2",
+		class: FirewallClass,
+	}
+	{
+		parent.addChild(child1)
+		if len(parent.getChildren()) != 1 {
+			t.Errorf("error getting children; expecting 1, got %v", len(parent.getChildren()))
+		}
+		c1 := parent.getChildren()
+		if c1[0] != child1 {
+			t.Errorf("error getting children; expected %v, got %v", child1, c1)
+		}
+	}
+	{
+		parent.addChild(child2)
+		if len(parent.getChildren()) != 2 {
+			t.Errorf("error getting children; expecting 2, got %v", len(parent.getChildren()))
+		}
+	}
+}
