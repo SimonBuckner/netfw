@@ -1,5 +1,14 @@
 mode: set
-C:\Users\simon\Coding\golang\netfw\iface.go:9.35,16.2 1 1
+C:\Users\simon\Coding\golang\netfw\fw.go:12.41,20.2 1 1
+C:\Users\simon\Coding\golang\netfw\fw.go:23.47,24.17 1 1
+C:\Users\simon\Coding\golang\netfw\fw.go:27.2,27.22 1 1
+C:\Users\simon\Coding\golang\netfw\fw.go:30.2,31.12 2 1
+C:\Users\simon\Coding\golang\netfw\fw.go:24.17,26.3 1 1
+C:\Users\simon\Coding\golang\netfw\fw.go:27.22,29.3 1 1
+C:\Users\simon\Coding\golang\netfw\iface.go:20.33,22.2 1 1
+C:\Users\simon\Coding\golang\netfw\iface.go:31.35,38.2 1 1
+C:\Users\simon\Coding\golang\netfw\iface.go:41.42,44.2 2 1
+C:\Users\simon\Coding\golang\netfw\iface.go:47.41,50.2 2 1
 C:\Users\simon\Coding\golang\netfw\netfw.go:44.34,46.2 1 1
 C:\Users\simon\Coding\golang\netfw\netfw.go:49.35,50.21 1 1
 C:\Users\simon\Coding\golang\netfw\netfw.go:54.2,54.69 1 1
@@ -25,9 +34,3 @@ C:\Users\simon\Coding\golang\netfw\site.go:43.22,45.3 1 1
 C:\Users\simon\Coding\golang\netfw\site.go:46.21,48.3 1 1
 C:\Users\simon\Coding\golang\netfw\site.go:49.21,51.3 1 1
 C:\Users\simon\Coding\golang\netfw\site.go:53.38,56.3 2 1
-C:\Users\simon\Coding\golang\netfw\fw.go:12.41,20.2 1 1
-C:\Users\simon\Coding\golang\netfw\fw.go:23.47,24.17 1 1
-C:\Users\simon\Coding\golang\netfw\fw.go:27.2,27.22 1 1
-C:\Users\simon\Coding\golang\netfw\fw.go:30.2,31.12 2 1
-C:\Users\simon\Coding\golang\netfw\fw.go:24.17,26.3 1 1
-C:\Users\simon\Coding\golang\netfw\fw.go:27.22,29.3 1 1

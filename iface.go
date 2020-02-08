@@ -24,7 +24,7 @@ func (m Mode) ToString() string {
 // Iface represents a network interfaces in a switch or firewall
 type Iface struct {
 	device
-	Trunk bool
+	mode Mode
 }
 
 // NewIface builds a new interface
@@ -35,4 +35,16 @@ func NewIface(name string) *Iface {
 			class: IfaceClass,
 		},
 	}
+}
+
+// SetTrunkMode set the interface mode to Trunk
+func (iface *Iface) SetTrunkMode() error {
+	iface.mode = TrunkMode
+	return nil
+}
+
+// SetEdgeMode set the interface mode to Edge
+func (iface *Iface) SetEdgeMode() error {
+	iface.mode = EdgeMode
+	return nil
 }
