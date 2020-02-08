@@ -4,16 +4,72 @@ import (
 	"testing"
 )
 
-func TestDevice(t *testing.T) {
+func TestDeviceSetParent(t *testing.T) {
+	p := &device{
+		name:  "parent",
+		class: SiteClass,
+	}
+	c := &device{
+		name:  "child",
+		class: FirewallClass,
+	}
+	{
+		c.setParent(p)
+		if c.parent != p {
+			t.Errorf("error getting parent")
+		}
+	}
+}
+
+func TestDeviceGetParent(t *testing.T) {
+	p := &device{
+		name:  "parent",
+		class: SiteClass,
+	}
+	c := &device{
+		name:  "child",
+		class: FirewallClass,
+	}
+	c.setParent(p)
+	if c.getParent() != p {
+		t.Errorf("error getting parent")
+	}
+}
+
+func TestDeviceGetPath(t *testing.T) {
+
 	parent := &device{
-		name: "parent",
+		name:  "parent",
+		class: SiteClass,
 	}
 	child := &device{
-		name: "child",
+		name:  "child",
+		class: FirewallClass,
 	}
+
+	{
+		exp := "site=parent"
+		got := parent.GetPath()
+		if got != exp {
+			t.Errorf("error getting firewall path, expected %s, got %s", exp, got)
+		}
+	}
+
+	{
+		exp := "firewall=child"
+		got := child.GetPath()
+		if got != exp {
+			t.Errorf("error getting primary firewall path, expected %s, got %s", exp, got)
+		}
+	}
+
 	child.setParent(parent)
-	if child.parent != parent {
-		t.Errorf("error setting parent twice; child.parent & parent don't match")
+	{
+		exp := "site=parent,firewall=child"
+		got := child.GetPath()
+		if got != exp {
+			t.Errorf("error getting primary firewall path, expected %s, got %s", exp, got)
+		}
 	}
 
 }

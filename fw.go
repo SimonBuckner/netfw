@@ -32,10 +32,10 @@ func (fw *Firewall) SetSite(site *Site) error {
 }
 
 // AddIface adds a network interace to the firewall
-func (fw *Firewall) AddIface(name string, iface *Iface) error {
-	if _, ok := fw.interfaces[name]; ok {
-		return fmt.Errorf("unable to add interface as interface already exists")
-	}
+// func (fw *Firewall) AddIface(name string, iface *Iface) error {
+// 	if _, ok := fw.interfaces[name]; ok {
+// 		return fmt.Errorf("unable to add interface as interface already exists")
+// 	}
 
-	return nil
-}
+// 	return nil
+// }

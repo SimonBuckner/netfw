@@ -28,7 +28,10 @@ func (s *Site) SetPrimaryFirewall(fw *Firewall) error {
 		return fmt.Errorf("error setting primary firewall, firewall already set")
 	}
 	s.primary = fw
-	fw.SetSite(s)
+	if err := fw.SetSite(s); err != nil {
+		s.primary = nil
+		return err
+	}
 	return nil
 }
 
@@ -47,6 +50,9 @@ func (s *Site) SetBackupFirewall(fw *Firewall) error {
 		return fmt.Errorf("error setting backup firewall, primary & backup cannot be the same")
 	}
 	s.backup = fw
-	fw.SetSite(s)
+	if err := fw.SetSite(s); err != nil {
+		s.backup = nil
+		return err
+	}
 	return nil
 }

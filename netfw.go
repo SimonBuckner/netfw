@@ -40,18 +40,18 @@ var classText = map[Class]string{
 	VlanClass:     "vlan",
 }
 
-// ToString returnes a string representation fo a class
+// ToString returns a string representation of a class
 func (c Class) ToString() string {
 	return classText[c]
 }
 
 // GetPath returns this devices location
 func (d *device) GetPath() string {
-	path := ""
-	if d.parent != nil {
-		path = d.parent.GetPath() + ","
+	if d.parent == nil {
+		return d.class.ToString() + "=" + d.name
+
 	}
-	return path + d.class.ToString() + "=" + d.name
+	return d.parent.GetPath() + "," + d.class.ToString() + "=" + d.name
 }
 
 // getParent returns the parent device
