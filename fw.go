@@ -33,6 +33,9 @@ func (fw *Firewall) SetSite(site *Site) error {
 
 // AddIface adds a network interace to the firewall
 func (fw *Firewall) AddIface(iface *Iface) error {
+	if iface == nil {
+		return fmt.Errorf("error adding interface, cannot be nil")
+	}
 	if _, ok := fw.interfaces[iface.name]; ok {
 		return fmt.Errorf("unable to add interface as interface already exists")
 	}
