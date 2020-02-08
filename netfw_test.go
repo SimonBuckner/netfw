@@ -71,5 +71,43 @@ func TestDeviceGetPath(t *testing.T) {
 			t.Errorf("error getting primary firewall path, expected %s, got %s", exp, got)
 		}
 	}
+}
 
+func TestDeviceSetChild(t *testing.T) {
+	parent := &device{
+		name:  "parent",
+		class: SiteClass,
+	}
+	child := &device{
+		name:  "child",
+		class: FirewallClass,
+	}
+
+	{
+		parent.addChild(child)
+		if parent.children["child"] != child {
+			t.Errorf("error adding child to device; child is not correct")
+		}
+		if child.parent != parent {
+			t.Errorf("error adding child to device; parent is not correct")
+		}
+	}
+}
+
+func TestDeviceChildExists(t *testing.T) {
+	parent := &device{
+		name:  "parent",
+		class: SiteClass,
+	}
+	child := &device{
+		name:  "child",
+		class: FirewallClass,
+	}
+	parent.addChild(child)
+	{
+		exists := parent.childExists(child)
+		if !exists {
+			t.Errorf("error checking child exists; expecting true, got false")
+		}
+	}
 }

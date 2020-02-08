@@ -1,3 +1,3 @@
-module github.com/simonbuckner/ntfw
+module github.com/simonbuckner/netfw
 
 go 1.13
