@@ -105,7 +105,7 @@ func TestDeviceChildExists(t *testing.T) {
 	}
 	parent.addChild(child)
 	{
-		exists := parent.childExists(child)
+		exists := parent.hasChildren(child)
 		if !exists {
 			t.Errorf("error checking child exists; expecting true, got false")
 		}

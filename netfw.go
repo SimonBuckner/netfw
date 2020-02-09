@@ -7,7 +7,7 @@ type Device interface {
 	setParent(parent Device)
 	getParent() Device
 	addChild(child Device)
-	childExists(child Device) bool
+	hasChildren(child Device) bool
 	getChildren() []Device
 }
 
@@ -83,8 +83,8 @@ func (d *device) addChild(child Device) {
 	child.setParent(d)
 }
 
-// childExists checks to see if a child already exists
-func (d *device) childExists(child Device) bool {
+// hasChildren checks to see if a child already exists
+func (d *device) hasChildren(child Device) bool {
 	if _, ok := d.children[child.GetName()]; ok {
 		return true
 	}

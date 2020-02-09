@@ -22,7 +22,7 @@ func (fw *Firewall) AddIface(iface *Iface) error {
 	if iface == nil {
 		return fmt.Errorf("error adding interface, cannot be nil")
 	}
-	if fw.childExists(iface) {
+	if fw.hasChildren(iface) {
 		return fmt.Errorf("unable to add interface as interface already exists")
 	}
 	if iface.getParent() != nil {
