@@ -10,9 +10,9 @@ C:\Users\simon\Coding\golang\netfw\firewall.go:28.30,30.3 1 1
 C:\Users\simon\Coding\golang\netfw\iface.go:12.35,19.2 1 6
 C:\Users\simon\Coding\golang\netfw\iface.go:22.42,25.2 2 1
 C:\Users\simon\Coding\golang\netfw\iface.go:28.41,31.2 2 1
-C:\Users\simon\Coding\golang\netfw\iface.go:50.33,52.2 1 2
-C:\Users\simon\Coding\golang\netfw\iface.go:88.40,90.2 1 0
-C:\Users\simon\Coding\golang\netfw\iface.go:93.38,95.2 1 0
+C:\Users\simon\Coding\golang\netfw\iface.go:50.33,52.2 1 4
+C:\Users\simon\Coding\golang\netfw\iface.go:88.40,90.2 1 2
+C:\Users\simon\Coding\golang\netfw\iface.go:93.38,95.2 1 3
 C:\Users\simon\Coding\golang\netfw\netfw.go:49.34,51.2 1 4
 C:\Users\simon\Coding\golang\netfw\netfw.go:54.35,56.2 1 24
 C:\Users\simon\Coding\golang\netfw\netfw.go:59.35,60.21 1 4

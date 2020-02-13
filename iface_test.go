@@ -38,3 +38,55 @@ func TestIfaceSetEdgeMode(t *testing.T) {
 		}
 	}
 }
+
+func TestIfaceEnumStrings(t *testing.T) {
+
+	{
+		mode := EdgeMode
+		if mode.ToString() != "edge" {
+			t.Errorf("unexepcted interface mode; expecting 'edge', got '%v'", mode.ToString())
+		}
+	}
+
+	{
+		mode := TrunkMode
+		if mode.ToString() != "trunk" {
+			t.Errorf("unexepcted interface mode; expecting 'trunk', got '%v'", mode.ToString())
+		}
+	}
+
+	{
+		duplex := HalfDuplex
+		if duplex.ToString() != "half-duplex" {
+			t.Errorf("unexepcted interface duplex; expecting 'half-duplex', got '%v'", duplex.ToString())
+		}
+	}
+
+	{
+		duplex := FullDuplex
+		if duplex.ToString() != "full-duplex" {
+			t.Errorf("unexepcted interface duplex; expecting 'full-duplex', got '%v'", duplex.ToString())
+		}
+	}
+
+	{
+		speed := Speed10
+		if speed.ToString() != "10-mbps" {
+			t.Errorf("unexepcted interface speed; expecting '10-mbps', got '%v'", speed.ToString())
+		}
+	}
+
+	{
+		speed := Speed100
+		if speed.ToString() != "100-mbps" {
+			t.Errorf("unexepcted interface speed; expecting '100-mbps', got '%v'", speed.ToString())
+		}
+	}
+
+	{
+		speed := Speed1000
+		if speed.ToString() != "1000-mbps" {
+			t.Errorf("unexepcted interface speed; expecting '1000-mbps', got '%v'", speed.ToString())
+		}
+	}
+}

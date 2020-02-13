@@ -64,9 +64,9 @@ const (
 )
 
 var speedText = map[Speed]string{
-	Speed10:   "10 Mbps",
-	Speed100:  "100 Mbps",
-	Speed1000: "1000 Mbps",
+	Speed10:   "10-mbps",
+	Speed100:  "100-mbps",
+	Speed1000: "1000-mbps",
 }
 
 // Duplex represent the duplex mode of an interface
@@ -80,8 +80,8 @@ const (
 )
 
 var duplexText = map[Duplex]string{
-	HalfDuplex: "Half Duplex",
-	FullDuplex: "Full Duplex",
+	HalfDuplex: "half-duplex",
+	FullDuplex: "full-duplex",
 }
 
 // ToString returns a string representation of a Duplex
