@@ -3,6 +3,7 @@ package netfw
 import "testing"
 
 var _ Device = &Iface{}
+var _ Patchable = &Iface{}
 
 func TestNewIface(t *testing.T) {
 	iface := NewIface("eth0")

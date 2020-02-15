@@ -4,7 +4,7 @@ import "fmt"
 
 // Site represents a physical location
 type Site struct {
-	device
+	*device
 }
 
 // NewSite factory

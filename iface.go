@@ -1,11 +1,14 @@
 package netfw
 
+import "fmt"
+
 // Iface represents a network interfaces in a switch or firewall
 type Iface struct {
-	device
-	mode   Mode
-	duplex Duplex
-	speed  Speed
+	*device
+	mode    Mode
+	duplex  Duplex
+	speed   Speed
+	patched Device
 }
 
 // NewIface factory
@@ -25,6 +28,28 @@ func (iface *Iface) SetTrunkMode() error {
 func (iface *Iface) SetEdgeMode() error {
 	iface.mode = EdgeMode
 	return nil
+}
+
+// Patch this device to another
+func (iface *Iface) Patch(to Patchable) error {
+	if iface.IsPatched() {
+		return fmt.Errorf("error, this interface is already patched")
+	}
+	if err := to.Patch(Patchable(iface)); err != nil {
+		return err
+	}
+	iface.patched = to
+	return nil
+}
+
+// IsPatched returns true if this interface has been patched
+func (iface *Iface) IsPatched() bool {
+	return !(iface.patched == nil)
+}
+
+// GetPatchedDevice ..
+func (iface *Iface) GetPatchedDevice() Device {
+	return iface.patched
 }
 
 // Mode represents the operating mode of the interface

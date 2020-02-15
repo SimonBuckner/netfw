@@ -4,7 +4,7 @@ import "fmt"
 
 // Firewall represents the network border device
 type Firewall struct {
-	device
+	*device
 }
 
 // NewFirewall factory

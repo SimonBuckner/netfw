@@ -13,6 +13,14 @@ type Device interface {
 	getChildren() []Device
 }
 
+// Patchable objects can be directly patched to each other
+type Patchable interface {
+	Device
+	Patch(to Patchable) error
+	IsPatched() bool
+	GetPatchedDevice() Device
+}
+
 // Class denotes the type of device
 type Class int
 
@@ -27,6 +35,8 @@ const (
 	SwitchClass
 	// VlanClass ..
 	VlanClass
+	// EdgeClass ..
+	EdgeClass
 )
 
 var classText = map[Class]string{
@@ -35,6 +45,7 @@ var classText = map[Class]string{
 	IfaceClass:    "iface",
 	SwitchClass:   "switch",
 	VlanClass:     "vlan",
+	EdgeClass:     "edge",
 }
 
 // ToString returns a string representation of a class
@@ -52,8 +63,8 @@ type device struct {
 }
 
 // newDevice factory
-func newDevice(name string, class Class) device {
-	return device{
+func newDevice(name string, class Class) *device {
+	return &device{
 		name:      name,
 		class:     class,
 		parent:    nil,

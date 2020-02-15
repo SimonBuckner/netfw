@@ -7,14 +7,8 @@ import (
 var _ Device = &device{}
 
 func TestDeviceSetParent(t *testing.T) {
-	p := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	c := &device{
-		name:  "child",
-		class: FirewallClass,
-	}
+	p := newDevice("parent", SiteClass)
+	c := newDevice("child", FirewallClass)
 	{
 		c.setParent(p)
 		if c.parent != p {
@@ -24,14 +18,8 @@ func TestDeviceSetParent(t *testing.T) {
 }
 
 func TestDeviceGetParent(t *testing.T) {
-	p := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	c := &device{
-		name:  "child",
-		class: FirewallClass,
-	}
+	p := newDevice("parent", SiteClass)
+	c := newDevice("child", FirewallClass)
 	c.setParent(p)
 	if c.getParent() != p {
 		t.Errorf("error getting parent")
@@ -40,14 +28,8 @@ func TestDeviceGetParent(t *testing.T) {
 
 func TestDeviceGetPath(t *testing.T) {
 
-	parent := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	child := &device{
-		name:  "child",
-		class: FirewallClass,
-	}
+	parent := newDevice("parent", SiteClass)
+	child := newDevice("child", FirewallClass)
 
 	{
 		exp := "site=parent"
@@ -76,14 +58,8 @@ func TestDeviceGetPath(t *testing.T) {
 }
 
 func TestDeviceSetChild(t *testing.T) {
-	parent := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	child := &device{
-		name:  "child",
-		class: FirewallClass,
-	}
+	parent := newDevice("parent", SiteClass)
+	child := newDevice("child", FirewallClass)
 
 	{
 		parent.addChild(child)
@@ -97,14 +73,8 @@ func TestDeviceSetChild(t *testing.T) {
 }
 
 func TestDeviceChildExists(t *testing.T) {
-	parent := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	child := &device{
-		name:  "child",
-		class: FirewallClass,
-	}
+	parent := newDevice("parent", SiteClass)
+	child := newDevice("child", FirewallClass)
 	parent.addChild(child)
 	{
 		exists := parent.hasChildren(child)
@@ -115,18 +85,9 @@ func TestDeviceChildExists(t *testing.T) {
 }
 
 func TestDeviceGetChildren(t *testing.T) {
-	parent := &device{
-		name:  "parent",
-		class: SiteClass,
-	}
-	child1 := &device{
-		name:  "child1",
-		class: FirewallClass,
-	}
-	child2 := &device{
-		name:  "child2",
-		class: FirewallClass,
-	}
+	parent := newDevice("parent", SiteClass)
+	child1 := newDevice("child1", FirewallClass)
+	child2 := newDevice("child2", FirewallClass)
 	{
 		parent.addChild(child1)
 		if len(parent.getChildren()) != 1 {
