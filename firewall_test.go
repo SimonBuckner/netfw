@@ -2,6 +2,8 @@ package netfw
 
 import "testing"
 
+var _ Device = &Firewall{}
+
 func TestNewFirewall(t *testing.T) {
 	fw := NewFirewall("work")
 	if fw.class != FirewallClass {

@@ -2,6 +2,8 @@ package netfw
 
 import "testing"
 
+var _ Device = &Site{}
+
 func TestNewSites(t *testing.T) {
 	site := NewSite("work")
 	if site.class != SiteClass {

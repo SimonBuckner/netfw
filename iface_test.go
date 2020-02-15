@@ -2,6 +2,8 @@ package netfw
 
 import "testing"
 
+var _ Device = &Iface{}
+
 func TestNewIface(t *testing.T) {
 	iface := NewIface("eth0")
 	if iface.class != IfaceClass {

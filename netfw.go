@@ -11,8 +11,6 @@ type Device interface {
 	getChildren() []Device
 }
 
-var _ Device = &device{}
-
 // device represents the core features of a device
 type device struct {
 	name     string

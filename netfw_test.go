@@ -4,6 +4,8 @@ import (
 	"testing"
 )
 
+var _ Device = &device{}
+
 func TestDeviceSetParent(t *testing.T) {
 	p := &device{
 		name:  "parent",
