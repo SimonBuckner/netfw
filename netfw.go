@@ -1,5 +1,7 @@
 package netfw
 
+import "sort"
+
 // Device are objects that can return their lacation
 type Device interface {
 	GetName() string
@@ -42,19 +44,21 @@ func (c Class) ToString() string {
 
 // device represents the core features of a device
 type device struct {
-	name     string
-	class    Class
-	parent   Device
-	children map[string]Device
+	name      string
+	class     Class
+	parent    Device
+	children  map[string]Device
+	childKeys []string
 }
 
 // newDevice factory
 func newDevice(name string, class Class) device {
 	return device{
-		name:     name,
-		class:    class,
-		parent:   nil,
-		children: make(map[string]Device),
+		name:      name,
+		class:     class,
+		parent:    nil,
+		children:  make(map[string]Device),
+		childKeys: make([]string, 0),
 	}
 }
 
@@ -84,10 +88,10 @@ func (d *device) setParent(parent Device) {
 
 // addChild addsa child for this device
 func (d *device) addChild(child Device) {
-	if d.children == nil {
-		d.children = make(map[string]Device)
-	}
-	d.children[child.GetName()] = child
+	name := child.GetName()
+	d.children[name] = child
+	d.childKeys = append(d.childKeys, name)
+	sort.Strings(d.childKeys)
 	child.setParent(d)
 }
 
@@ -102,8 +106,9 @@ func (d *device) hasChildren(child Device) bool {
 // getChildren returns all child devices
 func (d *device) getChildren() []Device {
 	children := make([]Device, 0, len(d.children))
-	for _, v := range d.children {
-		children = append(children, v)
+
+	for _, name := range d.childKeys {
+		children = append(children, d.children[name])
 	}
 	return children
 }
