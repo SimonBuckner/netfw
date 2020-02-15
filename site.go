@@ -7,13 +7,10 @@ type Site struct {
 	device
 }
 
-// NewSite builsd a new Site object
+// NewSite factory
 func NewSite(name string) *Site {
 	return &Site{
-		device: device{
-			name:  name,
-			class: SiteClass,
-		},
+		device: newDevice(name, SiteClass),
 	}
 }
 

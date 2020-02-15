@@ -8,13 +8,10 @@ type Iface struct {
 	speed  Speed
 }
 
-// NewIface builds a new interface
+// NewIface factory
 func NewIface(name string) *Iface {
 	return &Iface{
-		device: device{
-			name:  name,
-			class: IfaceClass,
-		},
+		device: newDevice(name, IfaceClass),
 	}
 }
 

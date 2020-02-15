@@ -7,13 +7,10 @@ type Firewall struct {
 	device
 }
 
-// NewFirewall builds a new firewall object
+// NewFirewall factory
 func NewFirewall(name string) *Firewall {
 	return &Firewall{
-		device: device{
-			name:  name,
-			class: FirewallClass,
-		},
+		device: newDevice(name, FirewallClass),
 	}
 }
 

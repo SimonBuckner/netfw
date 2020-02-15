@@ -11,14 +11,6 @@ type Device interface {
 	getChildren() []Device
 }
 
-// device represents the core features of a device
-type device struct {
-	name     string
-	class    Class
-	parent   Device
-	children map[string]Device
-}
-
 // Class denotes the type of device
 type Class int
 
@@ -46,6 +38,24 @@ var classText = map[Class]string{
 // ToString returns a string representation of a class
 func (c Class) ToString() string {
 	return classText[c]
+}
+
+// device represents the core features of a device
+type device struct {
+	name     string
+	class    Class
+	parent   Device
+	children map[string]Device
+}
+
+// newDevice factory
+func newDevice(name string, class Class) device {
+	return device{
+		name:     name,
+		class:    class,
+		parent:   nil,
+		children: make(map[string]Device),
+	}
 }
 
 // GetName returnes the name f the device

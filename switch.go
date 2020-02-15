@@ -4,3 +4,10 @@ package netfw
 type Switch struct {
 	device
 }
+
+// NewSwitch factory
+func NewSwitch(name string) *Switch {
+	return &Switch{
+		device: newDevice(name, SwitchClass),
+	}
+}
