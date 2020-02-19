@@ -93,3 +93,37 @@ func TestIfaceEnumStrings(t *testing.T) {
 		}
 	}
 }
+
+func TestIfacepatch(t *testing.T) {
+
+	eth0 := NewIface("eth0")
+	eth1 := NewIface("eth1")
+	eth2 := NewIface("eth2")
+	eth1.patch(eth2)
+	eth2.patch(eth1)
+
+	{
+		if eth0.IsPatched() == true {
+			t.Errorf("error checking eth0 patching; expecting false, got true")
+		}
+	}
+
+	{
+		if eth1.IsPatched() == false {
+			t.Errorf("error checking eth1 patching; expecting true, got false")
+		}
+	}
+
+	{
+		if eth1.patched != eth2 {
+			t.Errorf("error checking eth1 patching; expecting eth2, got %v", eth1.patched)
+		}
+	}
+
+	{
+		if eth2.patched != eth1 {
+			t.Errorf("error checking eth2 patching; expecting eth1, got %v", eth2.patched)
+		}
+	}
+
+}

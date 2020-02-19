@@ -1,6 +1,9 @@
 package netfw
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 // Device are objects that can return their lacation
 type Device interface {
@@ -16,9 +19,8 @@ type Device interface {
 // Patchable objects can be directly patched to each other
 type Patchable interface {
 	Device
-	Patch(to Patchable) error
 	IsPatched() bool
-	GetPatchedDevice() Device
+	patch(dev Patchable)
 }
 
 // Class denotes the type of device
@@ -122,4 +124,18 @@ func (d *device) getChildren() []Device {
 		children = append(children, d.children[name])
 	}
 	return children
+}
+
+// Patch connects to devices together
+func Patch(dev1, dev2 Patchable) error {
+	if dev1.IsPatched() {
+		return fmt.Errorf("unable to patch %v as it is laready patched", dev1.GetName())
+	}
+
+	if dev2.IsPatched() {
+		return fmt.Errorf("unable to patch %v as it is laready patched", dev2.GetName())
+	}
+	dev1.patch(dev2)
+	dev2.patch(dev1)
+	return nil
 }

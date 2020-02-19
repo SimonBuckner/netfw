@@ -105,3 +105,55 @@ func TestDeviceGetChildren(t *testing.T) {
 		}
 	}
 }
+
+func TestPatchable(t *testing.T) {
+	eth0 := NewIface("eth0")
+	eth1 := NewIface("eth1")
+	eth2 := NewIface("eth2")
+
+	{
+		if eth0.IsPatched() == true {
+			t.Errorf("error checking eth0 patching; expecting false, got true")
+		}
+	}
+
+	{
+		err := Patch(eth0, eth1)
+		if err != nil {
+			t.Errorf("error patching eth0 to eth1; expecting nil, got %v", err)
+		}
+	}
+
+	{
+		err := Patch(eth1, eth2)
+		if err == nil {
+			t.Errorf("error patching eth1 to eth2; expecting an error, got nil")
+		}
+	}
+
+	{
+		err := Patch(eth2, eth1)
+		if err == nil {
+			t.Errorf("error patching eth2 to eth1; expecting an error, got nil")
+		}
+	}
+
+	{
+		if eth0.IsPatched() == false {
+			t.Errorf("error checking eth0 patching; expecting true, got false")
+		}
+	}
+
+	{
+		if eth1.IsPatched() == false {
+			t.Errorf("error checking eth1 patching; expecting true, got false")
+		}
+	}
+
+	{
+		if eth2.IsPatched() == true {
+			t.Errorf("error checking eth2 patching; expecting false, got true")
+		}
+	}
+
+}

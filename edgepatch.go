@@ -5,8 +5,8 @@ type EdgePatch struct {
 	*device
 }
 
-// NewEdgePort factory
-func NewEdgePort(name string) *EdgePatch {
+// NewEdgePatch factory
+func NewEdgePatch(name string) *EdgePatch {
 	return &EdgePatch{
 		device: newDevice(name, EdgeClass),
 	}
