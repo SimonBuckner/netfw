@@ -77,7 +77,7 @@ func TestDeviceChildExists(t *testing.T) {
 	child := newDevice("child", FirewallClass)
 	parent.addChild(child)
 	{
-		exists := parent.hasChildren(child)
+		exists := parent.hasChild(child)
 		if !exists {
 			t.Errorf("error checking child exists; expecting true, got false")
 		}

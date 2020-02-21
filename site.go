@@ -20,7 +20,7 @@ func (s *Site) AddFirewall(fw *Firewall) error {
 		return fmt.Errorf("error setting firewall, cannot be nil")
 	}
 	name := fw.GetName()
-	if s.hasChildren(fw) {
+	if s.hasChild(fw) {
 		return fmt.Errorf("error setting %s firewall, firewall already set", name)
 	}
 	if fw.getParent() != nil {

@@ -12,8 +12,10 @@ type Device interface {
 	setParent(parent Device)
 	getParent() Device
 	addChild(child Device)
-	hasChildren(child Device) bool
+	hasChild(child Device) bool
+	hasChildren() bool
 	getChildren() []Device
+	GetConfig() []string
 }
 
 // Patchable objects can be directly patched to each other
@@ -109,7 +111,12 @@ func (d *device) addChild(child Device) {
 }
 
 // hasChildren checks to see if a child already exists
-func (d *device) hasChildren(child Device) bool {
+func (d *device) hasChildren() bool {
+	return (len(d.children) > 0)
+}
+
+// hasChild checks to see if a child already exists
+func (d *device) hasChild(child Device) bool {
 	if _, ok := d.children[child.GetName()]; ok {
 		return true
 	}
@@ -124,6 +131,16 @@ func (d *device) getChildren() []Device {
 		children = append(children, d.children[name])
 	}
 	return children
+}
+
+// Read ..
+func (d *device) GetConfig() []string {
+	conf := []string{d.GetPath() + "\n"}
+
+	for _, v := range d.children {
+		conf = append(conf, v.GetConfig()...)
+	}
+	return conf
 }
 
 // Patch connects to devices together
