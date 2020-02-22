@@ -9,13 +9,16 @@ import (
 type Device interface {
 	GetName() string
 	GetPath() string
-	setParent(parent Device)
+	GetConfig() []string
+
 	getParent() Device
-	addChild(child Device)
+	setParent(parent Device)
+
 	hasChild(child Device) bool
+	addChild(child Device)
+
 	hasChildren() bool
 	getChildren() []Device
-	GetConfig() []string
 }
 
 // Patchable objects can be directly patched to each other

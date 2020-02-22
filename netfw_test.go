@@ -84,6 +84,24 @@ func TestDeviceChildExists(t *testing.T) {
 	}
 }
 
+func TestDeviceHasChildren(t *testing.T) {
+	parent := newDevice("parent", SiteClass)
+	child := newDevice("child", FirewallClass)
+
+	{
+		if parent.hasChildren() == true {
+			t.Errorf("error checking children exist; expecting false, got true")
+		}
+	}
+
+	parent.addChild(child)
+	{
+		if parent.hasChildren() == false {
+			t.Errorf("error checking children exist; expecting true, got false")
+		}
+	}
+}
+
 func TestDeviceGetChildren(t *testing.T) {
 	parent := newDevice("parent", SiteClass)
 	child1 := newDevice("child1", FirewallClass)
@@ -153,6 +171,54 @@ func TestPatchable(t *testing.T) {
 	{
 		if eth2.IsPatched() == true {
 			t.Errorf("error checking eth2 patching; expecting false, got true")
+		}
+	}
+
+}
+
+func TestGetConfig(t *testing.T) {
+	parent := newDevice("parent", SiteClass)
+	child1 := newDevice("child1", FirewallClass)
+	child2 := newDevice("child2", FirewallClass)
+
+	{
+		cfg := parent.GetConfig()
+		if len(cfg) != 1 {
+			t.Errorf("error getting config; expecting 1 line, got %v", len(cfg))
+		}
+		if cfg[0] != "site=parent\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[0])
+		}
+	}
+
+	parent.addChild(child1)
+	{
+		cfg := parent.GetConfig()
+		if len(cfg) != 2 {
+			t.Errorf("error getting config; expecting 2 line, got %v", len(cfg))
+		}
+		if cfg[0] != "site=parent\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[0])
+		}
+		if cfg[1] != "site=parent,firewall=child1\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[1])
+		}
+	}
+
+	parent.addChild(child2)
+	{
+		cfg := parent.GetConfig()
+		if len(cfg) != 3 {
+			t.Errorf("error getting config; expecting 2 line, got %v", len(cfg))
+		}
+		if cfg[0] != "site=parent\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[0])
+		}
+		if cfg[1] != "site=parent,firewall=child1\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[1])
+		}
+		if cfg[2] != "site=parent,firewall=child2\n" {
+			t.Errorf("error getting config; unexpected output, got %v", cfg[2])
 		}
 	}
 
