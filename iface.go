@@ -3,9 +3,10 @@ package netfw
 // Iface represents a network interfaces in a switch or firewall
 type Iface struct {
 	*device
-	mode    Mode
-	duplex  Duplex
-	speed   Speed
+	mode    Mode   // Edge or Trunk
+	duplex  Duplex // Full or Half
+	speed   Speed  // 10/100/1000
+	auto    bool   // Auto negotiate
 	patched Device
 }
 
@@ -13,6 +14,10 @@ type Iface struct {
 func NewIface(name string) *Iface {
 	return &Iface{
 		device: newDevice(name, IfaceClass),
+		mode:   EdgeMode,
+		duplex: FullDuplex,
+		speed:  Speed1000,
+		auto:   true,
 	}
 }
 
