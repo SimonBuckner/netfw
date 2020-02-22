@@ -10,7 +10,7 @@ type Device interface {
 	GetName() string
 	GetPath() string
 	GetConfig() []string
-
+	GetClass() Class
 	getParent() Device
 	setParent(parent Device)
 
@@ -19,6 +19,8 @@ type Device interface {
 
 	hasChildren() bool
 	getChildren() []Device
+
+	getKey() string
 }
 
 // Patchable objects can be directly patched to each other
@@ -94,6 +96,16 @@ func (d *device) GetPath() string {
 	return d.parent.GetPath() + "," + d.class.ToString() + "=" + d.name
 }
 
+// GetClass returns the class of the device
+func (d *device) GetClass() Class {
+	return d.class
+}
+
+// getKey returns the key that identifies the device
+func (d *device) getKey() string {
+	return d.GetClass().ToString() + "," + d.GetName()
+}
+
 // getParent returns the parent device
 func (d *device) getParent() Device {
 	return d.parent
@@ -106,9 +118,9 @@ func (d *device) setParent(parent Device) {
 
 // addChild addsa child for this device
 func (d *device) addChild(child Device) {
-	name := child.GetName()
-	d.children[name] = child
-	d.childKeys = append(d.childKeys, name)
+	key := child.getKey()
+	d.children[key] = child
+	d.childKeys = append(d.childKeys, key)
 	sort.Strings(d.childKeys)
 	child.setParent(d)
 }
@@ -120,7 +132,8 @@ func (d *device) hasChildren() bool {
 
 // hasChild checks to see if a child already exists
 func (d *device) hasChild(child Device) bool {
-	if _, ok := d.children[child.GetName()]; ok {
+	key := child.getKey()
+	if _, ok := d.children[key]; ok {
 		return true
 	}
 	return false
@@ -130,8 +143,8 @@ func (d *device) hasChild(child Device) bool {
 func (d *device) getChildren() []Device {
 	children := make([]Device, 0, len(d.children))
 
-	for _, name := range d.childKeys {
-		children = append(children, d.children[name])
+	for _, k := range d.childKeys {
+		children = append(children, d.children[k])
 	}
 	return children
 }

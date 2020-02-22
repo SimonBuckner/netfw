@@ -58,3 +58,40 @@ func TestSiteAddFirewall(t *testing.T) {
 		}
 	}
 }
+
+func TestSiteAddSwitch(t *testing.T) {
+	site1 := NewSite("site1")
+	sw1 := NewSwitch("sw1")
+	site2 := NewSite("site2")
+	sw2 := NewSwitch("sw2")
+	site2.AddSwitch(sw2)
+
+	{
+		err := site1.AddSwitch(nil)
+		if err == nil {
+			t.Errorf("error adding nil switch, expected error, got nil")
+		}
+	}
+
+	{
+		err := site1.AddSwitch(sw1)
+		if err != nil {
+			t.Errorf("error adding switch, expected nil, got %v", err)
+		}
+	}
+
+	{
+		err := site1.AddSwitch(sw1)
+		if err == nil {
+			t.Errorf("error adding switch, expected error, got nil")
+		}
+	}
+
+	{
+		err := site1.AddSwitch(sw2)
+		if err == nil {
+			t.Errorf("error adding switch, expected error, got nil")
+		}
+	}
+
+}

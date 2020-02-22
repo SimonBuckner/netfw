@@ -29,3 +29,19 @@ func (s *Site) AddFirewall(fw *Firewall) error {
 	s.addChild(fw)
 	return nil
 }
+
+// AddSwitch adds a switch to the site
+func (s *Site) AddSwitch(sw *Switch) error {
+	if sw == nil {
+		return fmt.Errorf("error add switch, cannot be nil")
+	}
+	name := sw.GetName()
+	if s.hasChild(sw) {
+		return fmt.Errorf("error adding %s switch, switch already present", name)
+	}
+	if sw.getParent() != nil {
+		return fmt.Errorf("error setting %s site, switch already has a site", name)
+	}
+	s.addChild(sw)
+	return nil
+}

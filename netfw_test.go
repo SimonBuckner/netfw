@@ -60,10 +60,10 @@ func TestDeviceGetPath(t *testing.T) {
 func TestDeviceSetChild(t *testing.T) {
 	parent := newDevice("parent", SiteClass)
 	child := newDevice("child", FirewallClass)
-
+	childKey := child.getKey()
 	{
 		parent.addChild(child)
-		if parent.children["child"] != child {
+		if parent.children[childKey] != child {
 			t.Errorf("error adding child to device; child is not correct")
 		}
 		if child.parent != parent {
